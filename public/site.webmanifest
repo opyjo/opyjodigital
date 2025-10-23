@@ -1,0 +1,14 @@
+{
+  "name": "Opyjo Digital",
+  "short_name": "Opyjo",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "theme_color": "#6366f1",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}
