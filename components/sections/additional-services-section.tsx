@@ -1,67 +1,78 @@
-import { Card } from "@/components/ui/card";
-import { Search, Lock, BarChart } from "lucide-react";
+"use client";
+
+import { motion } from "framer-motion";
+import { BrainCircuit, Lock, Radar, Sparkle, Workflow } from "lucide-react";
+
+const boosters = [
+  {
+    title: "Technical SEO & schema",
+    description:
+      "Structured data, sitemap automation, and content modeling that keep pages discoverable and performant.",
+    icon: Radar,
+  },
+  {
+    title: "Security & compliance",
+    description:
+      "Authentication, role-based access, and OWASP-aware hardening for teams operating in regulated industries.",
+    icon: Lock,
+  },
+  {
+    title: "Data & analytics intelligence",
+    description:
+      "Instrumentation, dashboards, and attributions built on GA4, Segment, or RudderStack to inform every iteration.",
+    icon: BrainCircuit,
+  },
+  {
+    title: "Marketing automation",
+    description:
+      "Lifecycle campaigns, CRM syncs, and webhook-driven workflows that keep your funnel humming without manual lift.",
+    icon: Workflow,
+  },
+  {
+    title: "AI-assisted experiences",
+    description:
+      "Personalization layers, content generation workflows, and conversational interfaces grounded in your data.",
+    icon: Sparkle,
+  },
+];
 
 export const AdditionalServicesSection = () => {
-  const additionalServices = [
-    {
-      icon: Search,
-      title: "SEO Optimization",
-      description:
-        "Technical SEO implementation, meta tags, structured data, and performance optimization for better search rankings.",
-      color: "primary",
-    },
-    {
-      icon: Lock,
-      title: "Security & Authentication",
-      description:
-        "Secure user authentication, authorization, data encryption, and protection against common vulnerabilities.",
-      color: "accent",
-    },
-    {
-      icon: BarChart,
-      title: "Analytics Integration",
-      description:
-        "Setup and integration of analytics tools to track user behavior, conversions, and website performance metrics.",
-      color: "primary",
-    },
-  ];
-
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-secondary/30">
+    <section className="relative overflow-hidden px-4 pb-24 pt-12 sm:px-6 lg:px-8">
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_bottom,rgba(59,130,246,0.14),transparent_70%)]" />
       <div className="container mx-auto max-w-6xl">
-        <div className="text-center space-y-4 mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground text-balance">
-            Additional Services
+        <div className="mb-12 text-center">
+          <span className="inline-flex items-center rounded-full border border-border/60 bg-background/70 px-3 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground/75">
+            Enhancements
+          </span>
+          <h2 className="mt-4 text-3xl font-bold leading-tight sm:text-4xl">
+            Plug-and-play accelerators to extend your stack.
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
-            Extra value to enhance your web presence
+          <p className="mt-3 text-base text-muted-foreground sm:text-lg">
+            Layer in the capabilities you need, when you need them—without slowing down release
+            cycles.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {additionalServices.map((service) => (
-            <Card
-              key={service.title}
-              className="p-6 hover:shadow-lg transition-shadow group"
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {boosters.map((booster, index) => (
+            <motion.div
+              key={booster.title}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ delay: index * 0.06, type: "spring", stiffness: 240, damping: 30 }}
+              className="group relative overflow-hidden rounded-3xl border border-white/12 bg-background/60 p-6 shadow-[0_26px_60px_rgba(15,23,42,0.22)] backdrop-blur-2xl"
             >
-              <div
-                className={`w-12 h-12 rounded-lg ${
-                  service.color === "primary" ? "bg-primary/10" : "bg-accent/10"
-                } flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
-              >
-                <service.icon
-                  className={`w-6 h-6 ${
-                    service.color === "primary" ? "text-primary" : "text-accent"
-                  }`}
-                />
+              <div className="pointer-events-none absolute inset-0 bg-[conic-gradient(from_140deg_at_50%_50%,rgba(59,130,246,0.12),transparent_60%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+              <div className="relative space-y-4">
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-primary/35 bg-primary/10 text-primary">
+                  <booster.icon className="h-5 w-5" />
+                </span>
+                <h3 className="text-lg font-semibold text-foreground">{booster.title}</h3>
+                <p className="text-sm text-muted-foreground/90">{booster.description}</p>
               </div>
-              <h3 className="text-xl font-semibold text-foreground mb-2">
-                {service.title}
-              </h3>
-              <p className="text-sm text-muted-foreground text-pretty">
-                {service.description}
-              </p>
-            </Card>
+            </motion.div>
           ))}
         </div>
       </div>

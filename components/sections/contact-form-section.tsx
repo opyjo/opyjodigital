@@ -1,201 +1,111 @@
-import { Card } from "@/components/ui/card";
+"use client";
+
+import { motion } from "framer-motion";
+import { Mail, Phone, MapPin, Clock, CalendarCheck } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
+
+const contactMethods = [
+  {
+    icon: Mail,
+    title: "Email",
+    detail: "hello@opyjodigital.com",
+    link: "mailto:hello@opyjodigital.com",
+    cta: "Send a note",
+  },
+  {
+    icon: Phone,
+    title: "Phone",
+    detail: "+1 (437) 371-3123",
+    link: "tel:+14373713123",
+    cta: "Schedule a call",
+  },
+  {
+    icon: MapPin,
+    title: "Location",
+    detail: "Remote-first · Toronto & London",
+  },
+  {
+    icon: Clock,
+    title: "Studio hours",
+    detail: "Mon–Fri · 9am–6pm EST",
+  },
+];
 
 export const ContactFormSection = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden px-4 pb-24 pt-12 sm:px-6 lg:px-8">
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(15,23,42,0.22),transparent_75%)]" />
       <div className="container mx-auto max-w-6xl">
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Contact Form */}
-          <div className="space-y-6">
-            <div>
-              <h2 className="text-3xl font-bold text-foreground mb-4">
-                Send us a Message
+        <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="space-y-6 rounded-[32px] border border-white/12 bg-background/60 p-8 shadow-[0_32px_65px_rgba(15,23,42,0.22)] backdrop-blur-2xl"
+          >
+            <div className="space-y-3">
+              <h2 className="text-3xl font-semibold text-foreground sm:text-4xl">
+                Tell us about your project
               </h2>
-              <p className="text-lg text-muted-foreground">
-                Fill out the form below and we'll get back to you within 24
-                hours.
+              <p className="text-sm text-muted-foreground sm:text-base">
+                Share the outcomes you’re targeting, where the project sits today, and any must-hit
+                timelines. We’ll reply with next steps and a tailored roadmap.
+              </p>
+            </div>
+            <ContactForm />
+            <div className="flex items-center gap-3 rounded-2xl border border-primary/30 bg-primary/10 px-4 py-3 text-sm text-primary">
+              <CalendarCheck className="h-4 w-4" />
+              Free 30-minute strategy consult for new engagements.
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 32 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{ delay: 0.1, duration: 0.6, ease: "easeOut" }}
+            className="space-y-6"
+          >
+            <div className="space-y-3">
+              <h3 className="text-2xl font-semibold text-foreground">Prefer a direct line?</h3>
+              <p className="text-sm text-muted-foreground sm:text-base">
+                Drop us a note or book time—we’ll follow up with a short discovery session to
+                understand scope, stakeholders, and success metrics.
               </p>
             </div>
 
-            <Card className="p-8 shadow-lg">
-              <ContactForm />
-            </Card>
-          </div>
-
-          {/* Contact Info */}
-          <div className="space-y-8">
-            <div>
-              <h3 className="text-2xl font-bold text-foreground mb-4">
-                Get in Touch
-              </h3>
-              <p className="text-muted-foreground">
-                Prefer to reach out directly? Here are the best ways to contact
-                us.
-              </p>
+            <div className="grid gap-4">
+              {contactMethods.map((method, index) => (
+                <motion.div
+                  key={method.title}
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.45 }}
+                  transition={{ delay: 0.12 * index, type: "spring", stiffness: 240, damping: 32 }}
+                  className="group flex items-start gap-4 rounded-3xl border border-white/10 bg-background/55 p-5 shadow-[0_24px_55px_rgba(15,23,42,0.2)] backdrop-blur-2xl"
+                >
+                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-primary/35 bg-primary/10 text-primary">
+                    <method.icon className="h-6 w-6" />
+                  </span>
+                  <div className="space-y-1">
+                    <p className="text-sm font-semibold uppercase tracking-[0.26em] text-muted-foreground/70">
+                      {method.title}
+                    </p>
+                    <p className="text-base text-foreground">{method.detail}</p>
+                    {method.link && method.cta && (
+                      <a
+                        href={method.link}
+                        className="inline-flex items-center gap-2 text-sm font-semibold text-primary transition-transform duration-300 hover:translate-x-1"
+                      >
+                        {method.cta}
+                      </a>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
             </div>
-
-            <div className="space-y-6">
-              <Card className="p-6 hover:shadow-md transition-shadow group">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <svg
-                      className="w-6 h-6 text-primary"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-foreground mb-1">
-                      Email
-                    </h4>
-                    <p className="text-muted-foreground mb-2">
-                      hello@opyjodigital.com
-                    </p>
-                    <a
-                      href="mailto:hello@opyjodigital.com"
-                      className="text-primary hover:underline"
-                    >
-                      Send an email
-                    </a>
-                  </div>
-                </div>
-              </Card>
-
-              <Card className="p-6 hover:shadow-md transition-shadow group">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <svg
-                      className="w-6 h-6 text-accent"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-foreground mb-1">
-                      Phone
-                    </h4>
-                    <p className="text-muted-foreground mb-2">
-                      +1 (555) 123-4567
-                    </p>
-                    <a
-                      href="tel:+15551234567"
-                      className="text-primary hover:underline"
-                    >
-                      Call now
-                    </a>
-                  </div>
-                </div>
-              </Card>
-
-              <Card className="p-6 hover:shadow-md transition-shadow group">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <svg
-                      className="w-6 h-6 text-primary"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-foreground mb-1">
-                      Location
-                    </h4>
-                    <p className="text-muted-foreground">
-                      Toronto, Ontario, Canada
-                    </p>
-                  </div>
-                </div>
-              </Card>
-
-              <Card className="p-6 hover:shadow-md transition-shadow group">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <svg
-                      className="w-6 h-6 text-accent"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-foreground mb-1">
-                      Business Hours
-                    </h4>
-                    <p className="text-muted-foreground">
-                      Mon-Fri: 9AM - 6PM EST
-                    </p>
-                  </div>
-                </div>
-              </Card>
-            </div>
-
-            <Card className="p-6 bg-primary/5 border-primary/20">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <svg
-                    className="w-6 h-6 text-primary"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-foreground mb-2">
-                    Free Consultation
-                  </h4>
-                  <p className="text-sm text-muted-foreground">
-                    Not sure where to start? Book a free 30-minute consultation
-                    to discuss your project needs and get expert advice.
-                  </p>
-                </div>
-              </div>
-            </Card>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
