@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
+import { Github, Linkedin, Mail } from "lucide-react";
 
 const navigation = [
   { label: "About", href: "/about" },
@@ -12,51 +12,37 @@ const navigation = [
   { label: "Contact", href: "/contact" },
 ];
 
-const services = [
-  "Experience design",
-  "Full-stack engineering",
-  "Headless commerce",
-  "Conversion optimization",
-];
-
 export const FooterSection = () => {
   return (
-    <footer className="relative overflow-hidden border-t border-border/60 px-4 pb-10 pt-16 sm:px-6 lg:px-8">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.12),transparent_70%)]" />
-      <div className="container mx-auto max-w-6xl">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.2fr,1fr,1fr]">
-          <div className="space-y-5">
-            <motion.h3
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              className="text-lg font-semibold text-foreground"
-            >
-              Opyjo Digital
-            </motion.h3>
-            <p className="max-w-sm text-sm text-muted-foreground/90">
-              A web design and development studio building conversion-first digital flagships for
-              bold brands. Strategy, story, systems, and scale—handled end to end.
+    <footer className="relative overflow-hidden border-t border-border bg-muted/40 px-4 py-12 sm:px-6 lg:px-8">
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_bottom,_rgba(59,130,246,0.12),_transparent_70%)]" />
+      <div className="mx-auto max-w-5xl space-y-10">
+        <div className="grid gap-10 md:grid-cols-3 md:gap-12">
+          <div className="space-y-4 text-left">
+            <h3 className="text-lg font-semibold text-foreground">Opyjo Digital</h3>
+            <p className="text-sm text-muted-foreground">
+              One-on-one website design and development support for small businesses and independent
+              service providers.
             </p>
-            <div className="flex flex-wrap gap-3 text-xs uppercase tracking-[0.32em] text-muted-foreground/60">
-              <span>Next.js 16</span>
-              <span>React 19</span>
-              <span>Framer Motion</span>
-              <span>Sanity</span>
-              <span>Shopify</span>
-            </div>
+            <p className="text-sm text-muted-foreground">
+              I stay close after launch, so you always have a friendly developer to call when the
+              next idea pops up.
+            </p>
+            <p className="text-xs uppercase tracking-[0.28em] text-muted-foreground">
+              Crafted with Next.js · Tailwind CSS · Vercel
+            </p>
           </div>
 
-          <div>
-            <h4 className="text-sm font-semibold uppercase tracking-[0.25em] text-muted-foreground">
+          <div className="space-y-3 text-left">
+            <h4 className="text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">
               Navigation
             </h4>
-            <ul className="mt-4 space-y-3 text-sm">
+            <ul className="mt-3 space-y-2 text-sm">
               {navigation.map((item) => (
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="text-muted-foreground transition-colors duration-300 hover:text-primary"
+                    className="text-muted-foreground transition-colors duration-200 hover:text-primary"
                   >
                     {item.label}
                   </Link>
@@ -65,27 +51,50 @@ export const FooterSection = () => {
             </ul>
           </div>
 
-          <div>
-            <h4 className="text-sm font-semibold uppercase tracking-[0.25em] text-muted-foreground">
-              Capabilities
+          <div className="space-y-3 text-left">
+            <h4 className="text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">
+              Connect
             </h4>
-            <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
-              {services.map((service) => (
-                <li key={service}>{service}</li>
-              ))}
+            <ul className="mt-3 space-y-2 text-sm">
+              <li>
+                <Link
+                  href="https://www.linkedin.com/in/opyjo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-primary"
+                >
+                  <Linkedin className="h-4 w-4" /> LinkedIn
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="https://github.com/opyjo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-primary"
+                >
+                  <Github className="h-4 w-4" /> GitHub
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="mailto:hello@opyjodigital.com"
+                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-primary"
+                >
+                  <Mail className="h-4 w-4" /> hello@opyjodigital.com
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-6 border-t border-border/60 pt-10 md:flex-row md:items-center md:justify-between">
-          <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground/70">
-            © {new Date().getFullYear()} Opyjo Digital. Crafted with intention.
-          </p>
-          <Link href="/contact" className="w-full md:w-auto">
+        <div className="flex flex-col gap-4 border-t border-border pt-8 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
+          <p>© {new Date().getFullYear()} Opyjo Digital · Built with care in Toronto.</p>
+          <Link href="/contact">
             <Button
               variant="outline"
               size="sm"
-              className="w-full border-primary/60 text-primary hover:bg-primary/10 md:w-auto"
+              className="border-primary/60 text-primary transition-transform duration-200 hover:-translate-y-0.5 hover:bg-primary/10 hover:shadow-md"
             >
               Start a project
             </Button>

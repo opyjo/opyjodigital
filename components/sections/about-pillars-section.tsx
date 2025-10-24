@@ -1,74 +1,55 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Compass, HeartHandshake, Lightbulb, TrendingUp } from "lucide-react";
+import { Coffee, Compass, Smile } from "lucide-react";
 
 const pillars = [
   {
     icon: Compass,
-    title: "Strategy with teeth",
+    title: "Clarity first",
     description:
-      "We connect brand narrative, UX, and growth goals into a single roadmap so every sprint moves the right metric.",
+      "We start every project by understanding your customers and what matters most to your business right now.",
   },
   {
-    icon: Lightbulb,
-    title: "Design systems thinking",
+    icon: Smile,
+    title: "Friendly collaboration",
     description:
-      "Modular UI foundations, purposeful motion, and accessible patterns that let teams expand without reinventing.",
+      "Expect honest feedback, simple explanations, and lots of encouragement along the way.",
   },
   {
-    icon: TrendingUp,
-    title: "Performance obsessed",
+    icon: Coffee,
+    title: "Sustainable pace",
     description:
-      "Lighthouse 95+, Core Web Vitals in the green, and analytics wired from day one for experimentation and CRO.",
-  },
-  {
-    icon: HeartHandshake,
-    title: "Partnership mindset",
-    description:
-      "Embedded collaboration, async transparency, and rituals that keep stakeholders aligned across time zones.",
+      "We set realistic timelines so you never feel rushed, and we stay available after launch for questions and tweaks.",
   },
 ];
 
 export const AboutPillarsSection = () => {
   return (
-    <section className="relative overflow-hidden px-4 pb-24 pt-10 sm:px-6 lg:px-8">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_bottom,rgba(59,130,246,0.16),transparent_65%)]" />
-      <div className="container mx-auto max-w-6xl">
-        <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
-          <div className="space-y-4">
-            <span className="inline-flex items-center rounded-full border border-border/60 bg-background/70 px-3 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground/75">
-              Our pillars
-            </span>
-            <h2 className="text-3xl font-bold leading-tight sm:text-4xl">
-              The beliefs that shape every engagement.
-            </h2>
-          </div>
-          <p className="max-w-md text-sm text-muted-foreground/85">
-            More than deliverables—we obsess over outcomes, clarity, and creating momentum for the
-            teams that trust us with their flagship experiences.
+    <section className="relative overflow-hidden px-4 py-20 sm:px-6 lg:px-8">
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.08),_transparent_70%)]" />
+      <div className="mx-auto max-w-4xl space-y-10 text-center">
+        <div className="space-y-4">
+          <h2 className="text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+            What it’s like to work together
+          </h2>
+          <p className="text-balance text-muted-foreground">
+            These simple principles guide every project, whether we’re building a one-page site or a
+            growing digital home for your brand.
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2">
-          {pillars.map((pillar, index) => (
-            <motion.div
+        <div className="grid gap-6 sm:grid-cols-3">
+          {pillars.map((pillar) => (
+            <div
               key={pillar.title}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.35 }}
-              transition={{ delay: index * 0.08, type: "spring", stiffness: 240, damping: 30 }}
-              className="group relative overflow-hidden rounded-3xl border border-white/12 bg-background/60 p-8 shadow-[0_28px_60px_rgba(15,23,42,0.2)] backdrop-blur-2xl"
+              className="flex h-full flex-col gap-3 rounded-[22px] border border-border/70 bg-card p-6 text-left shadow-sm transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg"
             >
-              <div className="pointer-events-none absolute inset-0 bg-[conic-gradient(from_130deg_at_50%_50%,rgba(59,130,246,0.14),transparent_60%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-              <div className="relative space-y-4">
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-primary/35 bg-primary/10 text-primary">
-                  <pillar.icon className="h-6 w-6" />
-                </span>
-                <h3 className="text-xl font-semibold text-foreground">{pillar.title}</h3>
-                <p className="text-sm text-muted-foreground/90">{pillar.description}</p>
-              </div>
-            </motion.div>
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <pillar.icon className="h-6 w-6" />
+              </span>
+              <h3 className="text-lg font-semibold text-foreground">{pillar.title}</h3>
+              <p className="text-sm text-muted-foreground">{pillar.description}</p>
+            </div>
           ))}
         </div>
       </div>

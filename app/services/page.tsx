@@ -3,30 +3,30 @@ import { ServicesHeroSection } from "@/components/sections/services-hero-section
 import { CoreServicesSection } from "@/components/sections/core-services-section";
 import { AdditionalServicesSection } from "@/components/sections/additional-services-section";
 import { ProcessSection } from "@/components/sections/process-section";
-import { FeaturedWorkSection } from "@/components/sections/featured-work-section";
 import { ServicesCTASection } from "@/components/sections/services-cta-section";
 import { FooterSection } from "@/components/sections/footer-section";
 
+const SectionDivider = () => (
+  <div className="mx-auto my-16 h-px w-full max-w-5xl bg-border/40" aria-hidden="true" />
+);
+
 export const metadata: Metadata = {
-  title: "Services | Opyjo Digital Studio",
+  title: "Website Services for Small Businesses | Opyjo Digital",
   description:
-    "Partner with Opyjo Digital for strategy, design, engineering, and growth squads that launch conversion-led web experiences and headless commerce products.",
+    "Launch-ready websites, ongoing support, and grow-with-you upgrades tailored for small businesses and independent service providers.",
 };
 
 export default function ServicesPage() {
   return (
-    <div className="relative min-h-screen overflow-hidden bg-background text-foreground">
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-[12%] top-[-10%] h-[520px] w-[520px] rounded-full bg-primary/20 blur-[180px]" />
-        <div className="absolute right-[-15%] top-[25%] h-[480px] w-[480px] rounded-full bg-accent/25 blur-[190px]" />
-        <div className="absolute bottom-[-22%] left-[18%] h-[540px] w-[540px] rounded-full bg-primary/15 blur-[180px]" />
-      </div>
-
+    <div className="bg-background text-foreground">
       <ServicesHeroSection />
+      <SectionDivider />
       <CoreServicesSection />
+      <SectionDivider />
       <AdditionalServicesSection />
+      <SectionDivider />
       <ProcessSection />
-      <FeaturedWorkSection />
+      <SectionDivider />
       <ServicesCTASection />
       <FooterSection />
     </div>

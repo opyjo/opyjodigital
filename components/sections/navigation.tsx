@@ -43,7 +43,6 @@ const isPathActive = (pathname: string | null, href: string) => {
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -51,16 +50,9 @@ export const Navigation = () => {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    let lastKnownScrollY = window.scrollY;
-
     const updateScrollState = () => {
       const currentScrollY = window.scrollY;
-      const isScrollingDown =
-        currentScrollY > lastKnownScrollY && currentScrollY > 120;
-
-      setIsVisible(!isScrollingDown);
       setIsScrolled(currentScrollY > 16);
-      lastKnownScrollY = currentScrollY;
     };
 
     let ticking = false;
@@ -102,15 +94,7 @@ export const Navigation = () => {
 
   return (
     <>
-      <motion.nav
-        initial={false}
-        animate={{
-          y: isVisible ? 0 : -120,
-          opacity: isVisible ? 1 : 0,
-        }}
-        transition={{ type: "spring", stiffness: 260, damping: 32 }}
-        className="fixed inset-x-0 top-4 z-50 flex justify-center px-4 md:px-6"
-      >
+      <motion.nav initial={false} className="fixed inset-x-0 top-4 z-50 flex justify-center px-4 md:px-6">
         <motion.div
           layout
           className={cn(

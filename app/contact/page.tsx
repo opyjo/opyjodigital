@@ -5,24 +5,25 @@ import { FAQSection } from "@/components/sections/faq-section";
 import { CTASection } from "@/components/sections/cta-section";
 import { FooterSection } from "@/components/sections/footer-section";
 
+const SectionDivider = () => (
+  <div className="mx-auto my-16 h-px w-full max-w-5xl bg-border/40" aria-hidden="true" />
+);
+
 export const metadata: Metadata = {
-  title: "Contact Opyjo Digital | Start Your Next Web Experience",
+  title: "Contact Opyjo Digital",
   description:
-    "Book a consultation with Opyjo Digital to assemble a cross-functional squad for your next web experience. Share your goals and timelines—we’ll respond within 24 hours.",
+    "Reach out to Johnson Ojo to chat about your website project. Friendly introductions, honest advice, and clear next steps.",
 };
 
 export default function ContactPage() {
   return (
-    <div className="relative min-h-screen overflow-hidden bg-background text-foreground">
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-[18%] top-[-12%] h-[520px] w-[520px] rounded-full bg-primary/20 blur-[200px]" />
-        <div className="absolute right-[-12%] top-[30%] h-[520px] w-[520px] rounded-full bg-accent/25 blur-[200px]" />
-        <div className="absolute bottom-[-18%] left-[12%] h-[560px] w-[560px] rounded-full bg-primary/15 blur-[200px]" />
-      </div>
-
+    <div className="bg-background text-foreground">
       <ContactHeroSection />
+      <SectionDivider />
       <ContactFormSection />
+      <SectionDivider />
       <FAQSection />
+      <SectionDivider />
       <CTASection />
       <FooterSection />
     </div>

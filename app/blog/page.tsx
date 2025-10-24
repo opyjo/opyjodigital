@@ -5,24 +5,25 @@ import { BlogSubscribeSection } from "@/components/sections/blog-subscribe-secti
 import { CTASection } from "@/components/sections/cta-section";
 import { FooterSection } from "@/components/sections/footer-section";
 
+const SectionDivider = () => (
+  <div className="mx-auto my-16 h-px w-full max-w-5xl bg-border/40" aria-hidden="true" />
+);
+
 export const metadata: Metadata = {
-  title: "Insights & Playbooks | Opyjo Digital Blog",
+  title: "Blog | Opyjo Digital",
   description:
-    "Ideas, frameworks, and technical walkthroughs from the Opyjo Digital team covering Next.js, design systems, headless commerce, and conversion-led growth.",
+    "Practical website tips and small business resources from Johnson Ojo of Opyjo Digital.",
 };
 
 export default function BlogPage() {
   return (
-    <div className="relative min-h-screen overflow-hidden bg-background text-foreground">
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-[12%] top-[-10%] h-[500px] w-[500px] rounded-full bg-primary/20 blur-[190px]" />
-        <div className="absolute right-[-15%] top-[30%] h-[520px] w-[520px] rounded-full bg-accent/25 blur-[190px]" />
-        <div className="absolute bottom-[-18%] left-[15%] h-[540px] w-[540px] rounded-full bg-primary/15 blur-[190px]" />
-      </div>
-
+    <div className="bg-background text-foreground">
       <BlogHeroSection />
+      <SectionDivider />
       <BlogPostsSection />
+      <SectionDivider />
       <BlogSubscribeSection />
+      <SectionDivider />
       <CTASection />
       <FooterSection />
     </div>
