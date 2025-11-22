@@ -6,187 +6,191 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent } from "@/components/ui/card"
-import { Label } from "@/components/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Mail, MapPin, ArrowRight, Calendar, Linkedin, Github, Twitter } from "lucide-react"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Mail, MapPin, Linkedin, Twitter, Instagram, Phone, Loader2, Send } from "lucide-react"
 import { useState } from "react"
 import { toast } from "sonner"
 
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
+  async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
     setIsSubmitting(true)
+
     // Simulate form submission
     await new Promise((resolve) => setTimeout(resolve, 1000))
+
     setIsSubmitting(false)
-    toast.success("Message sent!", {
-      description: "Thanks for reaching out! I'll get back to you within 24 hours.",
+    toast("Message sent!", {
+      description: "Thanks for reaching out. I'll get back to you within 24 hours.",
     })
+      // Reset form
+      ; (event.target as HTMLFormElement).reset()
   }
 
   return (
-    <div className="flex flex-col gap-20 pb-20">
-      {/* Header */}
-      <section className="pt-20 md:pt-32 px-4 md:px-6 lg:px-8 container mx-auto text-center space-y-6 animate-in fade-in slide-in-from-bottom-8 duration-700 fill-mode-both">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">Let's Start a Project</h1>
+    <div className="flex flex-col gap-12 pb-20 min-h-[calc(100vh-4rem)] justify-center">
+      {/* Hero Section */}
+      <section className="pt-12 md:pt-20 px-4 md:px-6 lg:px-8 w-full text-center space-y-6">
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-balance">
+          Let's Start Your Project
+        </h1>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
-          Whether you have a clear vision or just an idea, I'm here to help. Fill out the form below or book a free
-          consultation call.
+          Ready to grow your business online? Fill out the form below, and I'll get back to you within 24 hours to
+          schedule your free consultation.
         </p>
       </section>
 
-      <section className="container mx-auto px-4 md:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
-          {/* Contact Form */}
-          <div className="space-y-8 animate-in fade-in slide-in-from-left-8 duration-700 delay-200 fill-mode-both">
-            <Card>
-              <CardContent className="p-6 md:p-8">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">Name</Label>
-                      <Input id="name" placeholder="John Doe" required />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email</Label>
-                      <Input id="email" type="email" placeholder="john@example.com" required />
-                    </div>
-                  </div>
+      <section className="w-full px-4 md:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 max-w-6xl mx-auto items-start">
+          {/* Contact Info */}
+          <div className="space-y-10 animate-in fade-in slide-in-from-bottom-8 duration-700 fill-mode-both">
+            <div className="space-y-6">
+              <h2 className="text-2xl font-bold tracking-tight">Contact Information</h2>
+              <p className="text-muted-foreground text-lg">
+                Prefer to email or call? No problem. Here's how you can reach me directly.
+              </p>
 
-                  <div className="space-y-3">
-                    <Label>Project Type</Label>
-                    <RadioGroup defaultValue="website" className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                      <div>
-                        <RadioGroupItem value="website" id="website" className="peer sr-only" />
-                        <Label
-                          htmlFor="website"
-                          className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-transparent p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary peer-data-[state=checked]:text-primary cursor-pointer transition-all"
-                        >
-                          Website
-                        </Label>
-                      </div>
-                      <div>
-                        <RadioGroupItem value="ecommerce" id="ecommerce" className="peer sr-only" />
-                        <Label
-                          htmlFor="ecommerce"
-                          className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-transparent p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary peer-data-[state=checked]:text-primary cursor-pointer transition-all"
-                        >
-                          E-Commerce
-                        </Label>
-                      </div>
-                      <div>
-                        <RadioGroupItem value="other" id="other" className="peer sr-only" />
-                        <Label
-                          htmlFor="other"
-                          className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-transparent p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary peer-data-[state=checked]:text-primary cursor-pointer transition-all"
-                        >
-                          Other
-                        </Label>
-                      </div>
-                    </RadioGroup>
+              <div className="space-y-6">
+                <div className="flex items-start gap-4 p-4 rounded-xl hover:bg-muted/50 transition-colors">
+                  <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <Mail className="h-6 w-6 text-primary" />
                   </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="budget">Approximate Budget</Label>
-                    <select
-                      id="budget"
-                      defaultValue=""
-                      className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                    >
-                      <option value="" disabled>
-                        Select a range
-                      </option>
-                      <option value="1-2k">$1,000 - $2,500</option>
-                      <option value="2-5k">$2,500 - $5,000</option>
-                      <option value="5k+">$5,000+</option>
-                    </select>
+                  <div>
+                    <h3 className="font-semibold text-lg">Email</h3>
+                    <a href="mailto:hello@nexusdesign.com" className="text-muted-foreground hover:text-primary transition-colors">
+                      hello@nexusdesign.com
+                    </a>
                   </div>
+                </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="message">Project Details</Label>
-                    <Textarea
-                      id="message"
-                      placeholder="Tell me about your business and what you're looking to achieve..."
-                      className="min-h-[150px]"
-                      required
-                    />
+                <div className="flex items-start gap-4 p-4 rounded-xl hover:bg-muted/50 transition-colors">
+                  <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <Phone className="h-6 w-6 text-primary" />
                   </div>
+                  <div>
+                    <h3 className="font-semibold text-lg">Phone</h3>
+                    <a href="tel:+15551234567" className="text-muted-foreground hover:text-primary transition-colors">
+                      (555) 123-4567
+                    </a>
+                  </div>
+                </div>
 
-                  <Button type="submit" className="w-full text-lg py-6" disabled={isSubmitting}>
-                    {isSubmitting ? "Sending..." : "Send Message"}
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
+                <div className="flex items-start gap-4 p-4 rounded-xl hover:bg-muted/50 transition-colors">
+                  <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <MapPin className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-lg">Location</h3>
+                    <p className="text-muted-foreground">
+                      Based in San Francisco, CA
+                      <br />
+                      Serving clients worldwide
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-6 pt-6 border-t border-border/50">
+              <h2 className="text-2xl font-bold tracking-tight">Follow Me</h2>
+              <div className="flex gap-4">
+                <Button variant="outline" size="icon" className="h-12 w-12 rounded-full hover:bg-primary hover:text-primary-foreground transition-colors">
+                  <Linkedin className="h-5 w-5" />
+                  <span className="sr-only">LinkedIn</span>
+                </Button>
+                <Button variant="outline" size="icon" className="h-12 w-12 rounded-full hover:bg-primary hover:text-primary-foreground transition-colors">
+                  <Twitter className="h-5 w-5" />
+                  <span className="sr-only">Twitter</span>
+                </Button>
+                <Button variant="outline" size="icon" className="h-12 w-12 rounded-full hover:bg-primary hover:text-primary-foreground transition-colors">
+                  <Instagram className="h-5 w-5" />
+                  <span className="sr-only">Instagram</span>
+                </Button>
+              </div>
+            </div>
           </div>
 
-          {/* Contact Info & Calendar */}
-          <div className="space-y-12 animate-in fade-in slide-in-from-right-8 duration-700 delay-300 fill-mode-both">
-            <div className="space-y-8">
-              <h3 className="text-2xl font-bold">Contact Information</h3>
-              <div className="space-y-6">
-                <a
-                  href="mailto:hello@example.com"
-                  className="flex items-center gap-4 text-lg hover:text-primary transition-colors group"
-                >
-                  <div className="h-12 w-12 rounded-full bg-muted flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-                    <Mail className="h-6 w-6" />
-                  </div>
-                  hello@example.com
-                </a>
-                <div className="flex items-center gap-4 text-lg text-muted-foreground">
-                  <div className="h-12 w-12 rounded-full bg-muted flex items-center justify-center">
-                    <MapPin className="h-6 w-6" />
-                  </div>
-                  Based in San Francisco, CA
-                  <br />
-                  (Available Remote Worldwide)
+          {/* Contact Form */}
+          <div className="bg-card border rounded-2xl shadow-xl p-6 md:p-8 animate-in fade-in slide-in-from-right-8 duration-700 delay-200 fill-mode-both ring-1 ring-border/50">
+            <form onSubmit={onSubmit} className="space-y-6">
+              <div className="grid sm:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label htmlFor="name" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                    Name
+                  </label>
+                  <Input id="name" placeholder="John Doe" required className="h-11" />
+                </div>
+                <div className="space-y-2">
+                  <label htmlFor="email" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                    Email
+                  </label>
+                  <Input id="email" type="email" placeholder="john@example.com" required className="h-11" />
                 </div>
               </div>
 
-              <div className="pt-6 border-t">
-                <h4 className="font-medium mb-4">Connect on Social</h4>
-                <div className="flex gap-4">
-                  <Button variant="outline" size="icon" asChild>
-                    <Link href="https://linkedin.com" target="_blank">
-                      <Linkedin className="h-5 w-5" />
-                      <span className="sr-only">LinkedIn</span>
-                    </Link>
-                  </Button>
-                  <Button variant="outline" size="icon" asChild>
-                    <Link href="https://twitter.com" target="_blank">
-                      <Twitter className="h-5 w-5" />
-                      <span className="sr-only">Twitter</span>
-                    </Link>
-                  </Button>
-                  <Button variant="outline" size="icon" asChild>
-                    <Link href="https://github.com" target="_blank">
-                      <Github className="h-5 w-5" />
-                      <span className="sr-only">GitHub</span>
-                    </Link>
-                  </Button>
-                </div>
-              </div>
-            </div>
-
-            {/* Calendar Embed Simulation */}
-            <div className="bg-muted/30 rounded-xl p-8 border border-border/50 text-center space-y-6">
-              <div className="mx-auto h-16 w-16 rounded-full bg-background border-2 border-primary/20 flex items-center justify-center">
-                <Calendar className="h-8 w-8 text-primary" />
-              </div>
               <div className="space-y-2">
-                <h3 className="text-xl font-bold">Book a Free Consultation</h3>
-                <p className="text-muted-foreground text-pretty">
-                  Skip the email tag. Pick a time that works for you and let's chat about your project over Zoom.
-                </p>
+                <label htmlFor="project-type" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                  Project Type
+                </label>
+                <Select>
+                  <SelectTrigger className="h-11">
+                    <SelectValue placeholder="Select a project type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="website-design">Custom Website Design</SelectItem>
+                    <SelectItem value="website-redesign">Website Redesign</SelectItem>
+                    <SelectItem value="landing-page">Landing Page</SelectItem>
+                    <SelectItem value="ecommerce">E-Commerce Store</SelectItem>
+                    <SelectItem value="other">Other</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
-              <Button variant="outline" className="w-full bg-transparent">
-                View Available Times <ArrowRight className="ml-2 h-4 w-4" />
+
+              <div className="space-y-2">
+                <label htmlFor="budget" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                  Budget Range
+                </label>
+                <Select>
+                  <SelectTrigger className="h-11">
+                    <SelectValue placeholder="Select a budget range" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="under-1k">Under $1,000</SelectItem>
+                    <SelectItem value="1k-3k">$1,000 - $3,000</SelectItem>
+                    <SelectItem value="3k-5k">$3,000 - $5,000</SelectItem>
+                    <SelectItem value="5k-plus">$5,000+</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <label htmlFor="message" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                  Message
+                </label>
+                <Textarea
+                  id="message"
+                  placeholder="Tell me about your project and business goals..."
+                  className="min-h-[150px] resize-none"
+                  required
+                />
+              </div>
+
+              <Button type="submit" className="w-full h-12 text-base shadow-lg hover:shadow-primary/25 transition-all hover:scale-[1.02]" disabled={isSubmitting}>
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    Send Message
+                    <Send className="ml-2 h-4 w-4" />
+                  </>
+                )}
               </Button>
-            </div>
+            </form>
           </div>
         </div>
       </section>

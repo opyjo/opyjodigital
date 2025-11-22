@@ -19,7 +19,9 @@ export default function RootLayout({
       <body className={`font-sans antialiased flex min-h-screen flex-col`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <SiteHeader />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1 w-full max-w-7xl mx-auto min-h-screen bg-background">
+            {children}
+          </main>
           <SiteFooter />
           <Analytics />
         </ThemeProvider>

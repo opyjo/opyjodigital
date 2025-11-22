@@ -32,9 +32,9 @@ export function TestimonialsSection() {
 
   return (
     <section className="py-20 md:py-24 bg-muted/30">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-700 fill-mode-both">
-          <h2 className="font-bold text-3xl md:text-4xl lg:text-5xl text-balance">What My Clients Say</h2>
+          <h2 className="font-bold text-3xl md:text-4xl lg:text-5xl text-balance tracking-tight">What My Clients Say</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
             Don't just take my word for it. Here's what business owners say about working with me.
           </p>
@@ -44,25 +44,25 @@ export function TestimonialsSection() {
           {testimonials.map((testimonial, index) => (
             <Card
               key={index}
-              className="bg-card animate-in fade-in slide-in-from-bottom-8 fill-mode-both hover:shadow-md transition-shadow"
+              className="bg-card animate-in fade-in slide-in-from-bottom-8 fill-mode-both hover:shadow-lg transition-all hover:-translate-y-1 border-border/50"
               style={{ animationDelay: `${index * 150}ms` }}
             >
-              <CardContent className="p-6 space-y-4">
+              <CardContent className="p-8 space-y-6">
                 <div className="flex gap-1">
                   {Array.from({ length: testimonial.rating }).map((_, i) => (
                     <Star key={i} className="h-5 w-5 fill-accent text-accent" />
                   ))}
                 </div>
-                <blockquote className="text-base leading-relaxed text-pretty">"{testimonial.quote}"</blockquote>
-                <div className="flex items-center gap-3 pt-2">
-                  <Avatar>
-                    <AvatarFallback className="bg-primary text-primary-foreground">
+                <blockquote className="text-base leading-relaxed text-pretty text-muted-foreground">"{testimonial.quote}"</blockquote>
+                <div className="flex items-center gap-4 pt-2 border-t border-border/50 mt-4">
+                  <Avatar className="h-10 w-10 border border-border">
+                    <AvatarFallback className="bg-primary/10 text-primary font-bold">
                       {testimonial.initials}
                     </AvatarFallback>
                   </Avatar>
                   <div>
-                    <div className="font-semibold">{testimonial.author}</div>
-                    <div className="text-sm text-muted-foreground">{testimonial.role}</div>
+                    <div className="font-bold text-sm">{testimonial.author}</div>
+                    <div className="text-xs text-muted-foreground">{testimonial.role}</div>
                   </div>
                 </div>
               </CardContent>

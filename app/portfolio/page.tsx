@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ExternalLink, Github } from "lucide-react"
+import { ExternalLink, Github, TrendingUp, ArrowRight } from "lucide-react"
 
 export const metadata = {
   title: "Portfolio | WebStudio",
@@ -11,143 +11,114 @@ export const metadata = {
 export default function PortfolioPage() {
   const projects = [
     {
-      title: "Riverside Dental",
-      category: "Healthcare",
+      title: "Main Street Coffee",
+      category: "Web Design & Branding",
       description:
-        "A complete brand refresh and website redesign for a local dental practice. Focused on improving patient booking flow and mobile accessibility.",
-      image: "/modern-dental-website.jpg",
-      tech: ["Next.js", "Tailwind CSS", "Framer Motion"],
-      links: { live: "#", github: "#" },
-      featured: true,
+        "A complete rebrand and website overhaul for a local coffee shop. The new site features online ordering, a loyalty program integration, and a blog for sharing coffee tips.",
+      image: "/images/coffee-shop.jpg",
+      link: "#",
+      results: "40% increase in online orders",
     },
     {
-      title: "Summit Property",
-      category: "Real Estate",
+      title: "Oak & Stone Legal",
+      category: "Lead Generation Site",
       description:
-        "Custom property management dashboard and listing site. Features include real-time search, map integration, and automated lead routing.",
-      image: "/property-management-website.jpg",
-      tech: ["React", "Supabase", "Mapbox"],
-      links: { live: "#" },
-      featured: true,
+        "A professional, high-trust website for a boutique law firm. Focused on showcasing expertise and driving consultation bookings through strategic calls-to-action.",
+      image: "/images/legal-firm.jpg",
+      link: "#",
+      results: "2x more consultation requests",
+    },
+    {
+      title: "Summit Property Management",
+      category: "Corporate Website",
+      description:
+        "A clean, modern corporate site for a property management company. Includes a tenant portal integration, property listings, and a streamlined maintenance request system.",
+      image: "/images/property-management.jpg",
+      link: "#",
+      results: "Reduced admin time by 15 hours/week",
     },
     {
       title: "Blossom Bakery",
       category: "E-Commerce",
       description:
-        "Online ordering platform for a boutique bakery. Integrated with their POS system for inventory management and scheduled pickups.",
-      image: "/bakery-website-ecommerce.jpg",
-      tech: ["Shopify", "Liquid", "JavaScript"],
-      links: { live: "#" },
-      featured: true,
-    },
-    {
-      title: "TechStart Agency",
-      category: "Corporate",
-      description:
-        "Modern landing page for a tech recruiting agency. High-performance animations and interactive career map.",
-      image: "/images/tech-startup.jpg", // Updated to generated image
-      tech: ["Astro", "React", "Tailwind"],
-      links: { live: "#" },
-      featured: false,
-    },
-    {
-      title: "Yoga with Sarah",
-      category: "Fitness",
-      description:
-        "Membership site with video on demand and class scheduling. Custom member portal and payment processing.",
-      image: "/images/yoga-studio.jpg", // Updated to generated image
-      tech: ["Next.js", "Stripe", "Vercel Blob"],
-      links: { live: "#" },
-      featured: false,
-    },
-    {
-      title: "Local Brew",
-      category: "Hospitality",
-      description:
-        "Digital menu and event calendar for a craft brewery. QR code integration and social media feed aggregation.",
-      image: "/images/brewery.jpg", // Updated to generated image
-      tech: ["React", "Contentful", "Netlify"],
-      links: { live: "#" },
-      featured: false,
+        "A vibrant, mouth-watering e-commerce site for a custom bakery. Features a custom cake builder, delivery scheduling, and a gallery of past creations.",
+      image: "/images/bakery.jpg",
+      link: "#",
+      results: "60% of revenue now comes from online sales",
     },
   ]
 
   return (
-    <div className="flex flex-col min-h-screen">
-      {/* Header Area */}
-      <section className="pt-20 pb-10 px-4 md:px-6 lg:px-8 container mx-auto">
-        <div className="space-y-4 max-w-4xl">
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight">Selected Work</h1>
-          <p className="text-xl text-muted-foreground max-w-2xl text-pretty">
-            A collection of projects where design meets engineering. I focus on creating accessible, performant, and
-            beautiful web experiences.
-          </p>
-        </div>
+    <div className="flex flex-col gap-20 pb-20">
+      {/* Hero Section */}
+      <section className="pt-12 md:pt-32 pb-8 md:pb-10 px-4 md:px-6 lg:px-8 w-full text-center space-y-6">
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-balance">
+          Selected Work
+        </h1>
+        <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
+          A collection of websites that have helped small businesses grow, streamline operations, and build their brand.
+        </p>
       </section>
 
-      {/* Projects Grid */}
-      <section className="container mx-auto px-4 md:px-6 lg:px-8 pb-20">
-        <div className="grid gap-12 md:gap-16">
+      {/* Projects Section */}
+      <section className="w-full px-4 md:px-6 lg:px-8">
+        <div className="space-y-16 md:space-y-24">
           {projects.map((project, index) => (
-            <div key={index} className="group relative grid md:grid-cols-2 gap-6 md:gap-12 items-center">
-              {/* Image Column - Alternating order on desktop */}
-              <div
-                className={`relative aspect-video overflow-hidden rounded-xl border bg-muted ${index % 2 === 1 ? "md:order-2" : ""}`}
-              >
-                <img
-                  src={project.image || "/placeholder.svg"}
-                  alt={project.title}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+            <div
+              key={index}
+              className={`flex flex-col gap-12 items-center ${index % 2 === 1 ? "lg:flex-row-reverse" : "lg:flex-row"}`}
+            >
+              <div className="w-full lg:w-1/2 animate-in fade-in slide-in-from-bottom-8 duration-700 fill-mode-both" style={{ animationDelay: `${index * 100}ms` }}>
+                <div className="relative aspect-video overflow-hidden rounded-2xl border bg-muted shadow-2xl transition-all hover:shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] group">
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors z-10 pointer-events-none" />
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
               </div>
-
-              {/* Content Column */}
-              <div className={`space-y-6 ${index % 2 === 1 ? "md:order-1" : ""}`}>
+              <div className="w-full lg:w-1/2 space-y-6 animate-in fade-in slide-in-from-bottom-8 duration-700 fill-mode-both" style={{ animationDelay: `${index * 100 + 200}ms` }}>
                 <div className="space-y-2">
-                  <span className="text-primary font-medium tracking-wide uppercase text-sm">{project.category}</span>
-                  <h2 className="text-3xl font-bold group-hover:text-primary transition-colors">{project.title}</h2>
-                  <p className="text-muted-foreground text-lg leading-relaxed">{project.description}</p>
+                  <div className="inline-block">
+                    <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary ring-1 ring-primary/20">
+                      {project.category}
+                    </span>
+                  </div>
+                  <h2 className="text-3xl md:text-4xl font-bold tracking-tight">{project.title}</h2>
                 </div>
-
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((t, i) => (
-                    <Badge key={i} variant="secondary" className="px-3 py-1">
-                      {t}
-                    </Badge>
-                  ))}
+                <p className="text-lg text-muted-foreground leading-relaxed text-pretty">
+                  {project.description}
+                </p>
+                <div className="flex items-center gap-3 p-4 bg-muted/30 rounded-xl border border-border/50">
+                  <div className="h-10 w-10 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
+                    <TrendingUp className="h-5 w-5 text-accent" />
+                  </div>
+                  <div>
+                    <div className="text-sm font-medium text-muted-foreground">Key Result</div>
+                    <div className="font-bold text-foreground">{project.results}</div>
+                  </div>
                 </div>
-
-                <div className="flex gap-4 pt-2">
-                  {project.links.live && (
-                    <Button asChild variant="default">
-                      <Link href={project.links.live}>
-                        Visit Site <ExternalLink className="ml-2 h-4 w-4" />
-                      </Link>
-                    </Button>
-                  )}
-                  {project.links.github && (
-                    <Button asChild variant="outline">
-                      <Link href={project.links.github}>
-                        <Github className="mr-2 h-4 w-4" /> Source
-                      </Link>
-                    </Button>
-                  )}
-                </div>
+                <Button asChild size="lg" className="group">
+                  <Link href={project.link}>
+                    View Case Study <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </Button>
               </div>
             </div>
           ))}
         </div>
+      </section>
 
-        {/* CTA */}
-        <div className="mt-20 md:mt-32 p-8 md:p-12 bg-muted/30 rounded-2xl text-center space-y-6 border border-border/50">
-          <h3 className="text-2xl md:text-3xl font-bold">Have a project in mind?</h3>
-          <p className="text-muted-foreground max-w-xl mx-auto">
-            I'm currently accepting new clients for Q4 2025. Let's discuss how we can work together to achieve your
-            business goals.
+      {/* CTA */}
+      <section className="w-full px-4 md:px-6 lg:px-8 text-center pb-10">
+        <div className="bg-muted/30 rounded-3xl p-12 md:p-20 space-y-8 border border-border/50">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Like what you see?</h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Let's create a website that delivers similar results for your business.
           </p>
-          <Button asChild size="lg" className="mt-4">
-            <Link href="/contact">Start a Conversation</Link>
+          <Button asChild size="lg" className="px-8 shadow-lg hover:shadow-primary/25 transition-all hover:scale-105">
+            <Link href="/contact">Start Your Project</Link>
           </Button>
         </div>
       </section>

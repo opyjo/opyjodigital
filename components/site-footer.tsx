@@ -3,8 +3,8 @@ import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from "luc
 
 export function SiteFooter() {
   return (
-    <footer className="w-full border-t bg-background">
-      <div className="container px-4 md:px-6 py-12 md:py-16">
+    <footer className="w-full border-t border-border/40 bg-background">
+      <div className="w-full max-w-7xl mx-auto px-4 md:px-6 py-12 md:py-16 lg:py-20">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
             <Link href="/" className="flex items-center space-x-2 font-bold text-xl">

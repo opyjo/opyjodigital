@@ -113,8 +113,8 @@ export default function ServicesPage() {
   return (
     <div className="flex flex-col gap-20 pb-20">
       {/* Hero Section */}
-      <section className="pt-20 md:pt-32 pb-10 px-4 md:px-6 lg:px-8 container mx-auto text-center space-y-6">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-balance">
+      <section className="pt-12 md:pt-32 pb-8 md:pb-10 px-4 md:px-6 lg:px-8 w-full text-center space-y-6">
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-balance">
           Simple, Transparent Pricing
         </h1>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
@@ -123,38 +123,38 @@ export default function ServicesPage() {
       </section>
 
       {/* Pricing Section */}
-      <section className="container mx-auto px-4 md:px-6 lg:px-8">
+      <section className="w-full px-4 md:px-6 lg:px-8">
         <div className="grid md:grid-cols-3 gap-8">
           {packages.map((pkg, index) => (
             <Card
               key={index}
-              className={`flex flex-col relative ${pkg.popular ? "border-primary shadow-lg scale-105 z-10" : ""}`}
+              className={`flex flex-col relative transition-all duration-300 hover:shadow-xl ${pkg.popular ? "border-primary shadow-lg scale-105 z-10 ring-1 ring-primary/20" : "hover:-translate-y-1"}`}
             >
               {pkg.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-medium">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-medium shadow-md">
                   Most Popular
                 </div>
               )}
               <CardHeader>
-                <CardTitle className="text-2xl">{pkg.name}</CardTitle>
+                <CardTitle className="text-2xl font-bold">{pkg.name}</CardTitle>
                 <div className="mt-2">
-                  <span className="text-4xl font-bold">{pkg.price}</span>
-                  {pkg.name === "E-Commerce" && <span className="text-muted-foreground text-sm"> starting at</span>}
+                  <span className="text-4xl font-bold tracking-tight">{pkg.price}</span>
+                  {pkg.name === "E-Commerce" && <span className="text-muted-foreground text-sm font-medium"> starting at</span>}
                 </div>
-                <CardDescription className="text-base mt-2">{pkg.description}</CardDescription>
+                <CardDescription className="text-base mt-2 leading-relaxed">{pkg.description}</CardDescription>
               </CardHeader>
               <CardContent className="flex-1">
                 <ul className="space-y-3">
                   {pkg.features.map((feature, i) => (
                     <li key={i} className="flex items-center gap-2">
                       <Check className="h-4 w-4 text-primary flex-shrink-0" />
-                      <span className="text-sm">{feature}</span>
+                      <span className="text-sm text-muted-foreground font-medium">{feature}</span>
                     </li>
                   ))}
                 </ul>
               </CardContent>
               <CardFooter>
-                <Button asChild className="w-full" variant={pkg.popular ? "default" : "outline"}>
+                <Button asChild className="w-full shadow-sm" variant={pkg.popular ? "default" : "outline"} size="lg">
                   <Link href="/contact">{pkg.cta}</Link>
                 </Button>
               </CardFooter>
@@ -164,10 +164,10 @@ export default function ServicesPage() {
       </section>
 
       {/* Process Section */}
-      <section className="bg-muted/30 py-20">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8">
+      <section className="bg-muted/30 py-20 rounded-3xl mx-4 md:mx-6 lg:mx-8">
+        <div className="w-full px-4 md:px-6 lg:px-8">
           <div className="text-center mb-16 space-y-4">
-            <h2 className="text-3xl md:text-4xl font-bold">How It Works</h2>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">How It Works</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               My proven process ensures we stay on track and deliver a website you'll love.
             </p>
@@ -175,14 +175,14 @@ export default function ServicesPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
             {/* Connecting Line (Desktop) */}
-            <div className="hidden lg:block absolute top-12 left-0 right-0 h-0.5 bg-border -z-10 mx-16" />
+            <div className="hidden lg:block absolute top-12 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-border to-transparent -z-10 mx-16" />
 
             {processSteps.map((step, index) => (
               <div
                 key={index}
-                className="flex flex-col items-center text-center space-y-4 bg-background/50 backdrop-blur-sm p-6 rounded-lg border border-border/50"
+                className="flex flex-col items-center text-center space-y-4 bg-background/50 backdrop-blur-sm p-6 rounded-2xl border border-border/50 shadow-sm hover:shadow-md transition-shadow"
               >
-                <div className="h-24 w-24 rounded-full bg-background border-4 border-primary/20 flex items-center justify-center mb-2">
+                <div className="h-24 w-24 rounded-full bg-background border-4 border-primary/10 flex items-center justify-center mb-2 shadow-inner">
                   <step.icon className="h-10 w-10 text-primary" />
                 </div>
                 <h3 className="text-xl font-bold">{step.title}</h3>
@@ -194,16 +194,16 @@ export default function ServicesPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="container mx-auto px-4 md:px-6 lg:px-8 max-w-3xl">
+      <section className="w-full px-4 md:px-6 lg:px-8 max-w-3xl mx-auto">
         <div className="text-center mb-12 space-y-4">
-          <h2 className="text-3xl md:text-4xl font-bold">Frequently Asked Questions</h2>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Frequently Asked Questions</h2>
           <p className="text-lg text-muted-foreground">Everything you need to know about working with me.</p>
         </div>
 
         <Accordion type="single" collapsible className="w-full">
           {faqs.map((faq, index) => (
-            <AccordionItem key={index} value={`item-${index}`}>
-              <AccordionTrigger className="text-left text-base">{faq.question}</AccordionTrigger>
+            <AccordionItem key={index} value={`item-${index}`} className="border-b border-border/50">
+              <AccordionTrigger className="text-left text-base font-medium hover:text-primary transition-colors">{faq.question}</AccordionTrigger>
               <AccordionContent className="text-muted-foreground text-base leading-relaxed">
                 {faq.answer}
               </AccordionContent>
@@ -213,7 +213,7 @@ export default function ServicesPage() {
 
         <div className="mt-12 text-center">
           <p className="text-muted-foreground mb-4">Have more questions?</p>
-          <Button asChild variant="link" className="text-primary text-lg">
+          <Button asChild variant="link" className="text-primary text-lg font-semibold">
             <Link href="/contact">
               Contact me directly <ArrowRight className="ml-2 h-4 w-4" />
             </Link>

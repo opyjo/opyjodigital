@@ -1,100 +1,91 @@
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { ArrowRight, Calendar, Clock, User } from "lucide-react"
+import { blogPosts } from "@/lib/blog-data"
 
 export default function InsightsPage() {
-  const posts = [
-    {
-      title: "Why Your Small Business Needs a Custom Website in 2024",
-      excerpt:
-        "Stop relying on social media alone. Here's why owning your platform is crucial for long-term growth and credibility.",
-      date: "Mar 15, 2024",
-      readTime: "5 min read",
-      author: "Alex Dev",
-      category: "Strategy",
-    },
-    {
-      title: "5 Signs It's Time for a Website Redesign",
-      excerpt:
-        "Is your website driving customers away? Learn the key indicators that your digital storefront needs a makeover.",
-      date: "Mar 10, 2024",
-      readTime: "4 min read",
-      author: "Alex Dev",
-      category: "Design",
-    },
-    {
-      title: "SEO Basics for Local Businesses",
-      excerpt:
-        "Simple, actionable tips to help your business show up when locals search for your services on Google.",
-      date: "Mar 05, 2024",
-      readTime: "6 min read",
-      author: "Alex Dev",
-      category: "SEO",
-    },
-  ]
-
   return (
-    <div className="container py-20 px-4 md:px-6">
-      <div className="flex flex-col items-center text-center space-y-4 mb-16 animate-in fade-in slide-in-from-bottom-8 duration-700 fill-mode-both">
-        <div className="inline-block">
-          <span className="inline-flex items-center rounded-full bg-accent/10 px-4 py-1.5 text-sm font-medium text-accent">
+    <div className="flex flex-col gap-20 pb-20">
+      {/* Hero Section */}
+      <section className="pt-12 md:pt-32 pb-8 md:pb-10 px-4 md:px-6 lg:px-8 w-full text-center space-y-6">
+        <div className="inline-block animate-in fade-in slide-in-from-bottom-8 duration-700 fill-mode-both">
+          <span className="inline-flex items-center rounded-full bg-accent/10 px-4 py-1.5 text-sm font-medium text-accent ring-1 ring-accent/20">
             Blog & Resources
           </span>
         </div>
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">Insights & Articles</h1>
-        <p className="max-w-[700px] text-xl text-muted-foreground text-pretty">
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-balance animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100 fill-mode-both">
+          Insights & Articles
+        </h1>
+        <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-pretty animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200 fill-mode-both">
           Tips, trends, and strategies to help you grow your business online.
         </p>
-      </div>
+      </section>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {posts.map((post, index) => (
-          <div
-            key={index}
-            className="group flex flex-col rounded-xl border bg-card text-card-foreground shadow-sm transition-all hover:shadow-md animate-in fade-in slide-in-from-bottom-8 fill-mode-both"
-            style={{ animationDelay: `${index * 150}ms` }}
-          >
-            <div className="aspect-video w-full overflow-hidden rounded-t-xl bg-muted relative">
-              <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/20 font-bold text-4xl">
-                Image
+      {/* Blog Grid */}
+      <section className="w-full px-4 md:px-6 lg:px-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          {blogPosts.map((post, index) => (
+            <Link
+              href={`/insights/${post.slug}`}
+              key={index}
+              className="group flex flex-col rounded-2xl border bg-card text-card-foreground shadow-sm transition-all hover:shadow-xl hover:-translate-y-1 animate-in fade-in slide-in-from-bottom-8 fill-mode-both overflow-hidden"
+              style={{ animationDelay: `${index * 150}ms` }}
+            >
+              <div className="aspect-video w-full overflow-hidden bg-muted relative">
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors z-10" />
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
+                />
               </div>
-            </div>
-            <div className="flex flex-col flex-1 p-6">
-              <div className="flex items-center gap-4 text-xs text-muted-foreground mb-4">
-                <span className="inline-flex items-center rounded-full border px-2.5 py-0.5 font-semibold text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
-                  {post.category}
-                </span>
-                <div className="flex items-center gap-1">
-                  <Calendar className="h-3 w-3" />
-                  {post.date}
+              <div className="flex flex-col flex-1 p-6 space-y-4">
+                <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                  <span className="inline-flex items-center rounded-full bg-primary/10 px-2.5 py-0.5 font-medium text-primary">
+                    {post.category}
+                  </span>
+                  <div className="flex items-center gap-1">
+                    <Calendar className="h-3 w-3" />
+                    {post.date}
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Clock className="h-3 w-3" />
+                    {post.readTime}
+                  </div>
                 </div>
-                <div className="flex items-center gap-1">
-                  <Clock className="h-3 w-3" />
-                  {post.readTime}
+                <h3 className="text-xl font-bold group-hover:text-primary transition-colors line-clamp-2">
+                  {post.title}
+                </h3>
+                <p className="text-muted-foreground line-clamp-3 text-sm leading-relaxed">
+                  {post.excerpt}
+                </p>
+                <div className="mt-auto pt-4 flex items-center justify-between border-t border-border/50">
+                  <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+                    <User className="h-4 w-4" />
+                    {post.author}
+                  </div>
+                  <div className="text-sm font-medium text-primary flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                    Read Article <ArrowRight className="h-3 w-3" />
+                  </div>
                 </div>
               </div>
-              <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{post.title}</h3>
-              <p className="text-muted-foreground mb-6 line-clamp-3">{post.excerpt}</p>
-              <div className="mt-auto flex items-center justify-between">
-                <div className="flex items-center gap-2 text-sm font-medium">
-                  <User className="h-4 w-4 text-muted-foreground" />
-                  {post.author}
-                </div>
-                <Button variant="ghost" size="sm" className="gap-2 group-hover:translate-x-1 transition-transform">
-                  Read More <ArrowRight className="h-4 w-4" />
-                </Button>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+            </Link>
+          ))}
+        </div>
+      </section>
 
-      <div className="mt-16 text-center">
-        <p className="text-muted-foreground mb-4">Want to learn more about a specific topic?</p>
-        <Button asChild variant="outline" size="lg">
-          <Link href="/contact">Suggest a Topic</Link>
-        </Button>
-      </div>
+      {/* CTA */}
+      <section className="w-full px-4 md:px-6 lg:px-8 text-center pb-10">
+        <div className="bg-muted/30 rounded-3xl p-8 md:p-20 space-y-6 border border-border/50 max-w-5xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold">Want to learn more about a specific topic?</h2>
+          <p className="text-muted-foreground mb-4 max-w-xl mx-auto">
+            I'm always writing about new trends in web design and digital marketing. Let me know what you'd like to read next.
+          </p>
+          <Button asChild variant="outline" size="lg" className="bg-background hover:bg-accent hover:text-accent-foreground">
+            <Link href="/contact">Suggest a Topic</Link>
+          </Button>
+        </div>
+      </section>
     </div>
   )
 }
