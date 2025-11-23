@@ -8,7 +8,7 @@ export function SiteFooter() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
             <Link href="/" className="flex items-center space-x-2 font-bold text-xl">
-              <span className="text-primary">Nexus</span>Design
+              <span className="text-primary">Opyjo</span>Digital
             </Link>
             <p className="text-sm text-muted-foreground">
               Helping small businesses grow with custom, high-converting websites.
@@ -85,19 +85,19 @@ export function SiteFooter() {
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4" />
-                <a href="mailto:hello@nexusdesign.com" className="hover:text-foreground">
-                  hello@nexusdesign.com
+                <a href="mailto:hello@opyjodigital.com" className="hover:text-foreground">
+                  hello@opyjodigital.com
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4" />
-                <a href="tel:+1234567890" className="hover:text-foreground">
-                  (555) 123-4567
+                <a href="tel:+14377785339" className="hover:text-foreground">
+                  (437) 778-5339
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <MapPin className="h-4 w-4" />
-                <span>San Francisco, CA</span>
+                <span>Bradbury road. Hamilton Ontario</span>
               </li>
             </ul>
           </div>

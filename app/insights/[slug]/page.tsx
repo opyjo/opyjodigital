@@ -13,8 +13,9 @@ export function generateStaticParams() {
     }))
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-    const post = getPostBySlug(params.slug)
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    const { slug } = await params
+    const post = getPostBySlug(slug)
 
     if (!post) {
         return {
@@ -49,8 +50,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     }
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-    const post = getPostBySlug(params.slug)
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params
+    const post = getPostBySlug(slug)
 
     if (!post) {
         notFound()
@@ -105,7 +107,14 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             </div>
 
             <div
-                className="prose prose-base md:prose-lg dark:prose-invert mx-auto prose-headings:font-bold prose-a:text-primary prose-img:rounded-xl"
+                className="prose prose-lg dark:prose-invert mx-auto 
+                prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-foreground
+                prose-p:leading-relaxed prose-p:text-muted-foreground
+                prose-a:text-primary prose-a:no-underline prose-a:font-medium hover:prose-a:underline
+                prose-strong:text-foreground prose-strong:font-bold
+                prose-ul:list-disc prose-ul:pl-6 prose-li:marker:text-primary
+                prose-img:rounded-2xl prose-img:shadow-lg prose-img:my-8
+                prose-blockquote:border-l-primary prose-blockquote:bg-muted/50 prose-blockquote:py-2 prose-blockquote:px-6 prose-blockquote:rounded-r-lg prose-blockquote:not-italic"
                 dangerouslySetInnerHTML={{ __html: post.content }}
             />
 

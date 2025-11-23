@@ -71,8 +71,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-lg">Phone</h3>
-                    <a href="tel:+15551234567" className="text-muted-foreground hover:text-primary transition-colors">
-                      (555) 123-4567
+                    <a href="tel:+14377785339" className="text-muted-foreground hover:text-primary transition-colors">
+                      (437) 778-5339
                     </a>
                   </div>
                 </div>
@@ -84,7 +84,7 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-lg">Location</h3>
                     <p className="text-muted-foreground">
-                      Based in San Francisco, CA
+                      Based in Bradbury road. Hamilton Ontario
                       <br />
                       Serving clients worldwide
                     </p>
