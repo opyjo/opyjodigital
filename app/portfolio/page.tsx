@@ -1,50 +1,87 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { ExternalLink, Github, TrendingUp, ArrowRight } from "lucide-react"
 
 export const metadata = {
-  title: "Portfolio | WebStudio",
+  title: "Portfolio | OpyjoDigital",
   description: "A showcase of custom websites and digital products built for small businesses.",
 }
 
 export default function PortfolioPage() {
   const projects = [
     {
-      title: "Main Street Coffee",
-      category: "Web Design & Branding",
+      title: "Canada Citizenship Guide",
+      category: "Education",
       description:
-        "A complete rebrand and website overhaul for a local coffee shop. The new site features online ordering, a loyalty program integration, and a blog for sharing coffee tips.",
-      image: "/images/coffee-shop.jpg",
-      link: "#",
-      results: "40% increase in online orders",
+        "A comprehensive study guide and practice test platform for the Canadian citizenship exam. Features interactive quizzes and progress tracking.",
+      image: "/images/canada-citizenship.png",
+      link: "https://www.canadacitizenshipguide.ca/",
+      results: "95% Pass Rate",
     },
     {
-      title: "Oak & Stone Legal",
-      category: "Lead Generation Site",
+      title: "Driver Guide Canada",
+      category: "Education",
       description:
-        "A professional, high-trust website for a boutique law firm. Focused on showcasing expertise and driving consultation bookings through strategic calls-to-action.",
-      image: "/images/legal-firm.jpg",
-      link: "#",
-      results: "2x more consultation requests",
+        "The ultimate resource for Canadian driving tests. Includes practice exams, road rule guides, and tips for passing the road test.",
+      image: "/images/driver-guide.png",
+      link: "https://www.driverguide.ca/",
+      results: "High Pass Rate",
     },
     {
-      title: "Summit Property Management",
-      category: "Corporate Website",
+      title: "Kids Learn AI",
+      category: "EdTech",
       description:
-        "A clean, modern corporate site for a property management company. Includes a tenant portal integration, property listings, and a streamlined maintenance request system.",
-      image: "/images/property-management.jpg",
-      link: "#",
-      results: "Reduced admin time by 15 hours/week",
+        "An interactive platform designed to teach children the basics of Artificial Intelligence through fun, engaging lessons and activities.",
+      image: "/images/kids-learn-ai.png",
+      link: "https://www.kidslearnai.ca/",
+      results: "Award Winning UI",
     },
     {
-      title: "Blossom Bakery",
-      category: "E-Commerce",
+      title: "Smart Teacher Platform",
+      category: "SaaS",
       description:
-        "A vibrant, mouth-watering e-commerce site for a custom bakery. Features a custom cake builder, delivery scheduling, and a gallery of past creations.",
-      image: "/images/bakery.jpg",
-      link: "#",
-      results: "60% of revenue now comes from online sales",
+        "A suite of digital tools for educators to manage classrooms, track student progress, and plan lessons more effectively.",
+      image: "/images/smart-teacher.png",
+      link: "https://v0-smart-teacher-platform.vercel.app/",
+      results: "Streamlined Workflow",
+    },
+    {
+      title: "Modern School Website",
+      category: "Web Design",
+      description:
+        "A clean, responsive, and accessible website template tailored for modern educational institutions and schools.",
+      image: "/images/school-website.png",
+      link: "https://v0-school-website-wheat.vercel.app/",
+      results: "Improved Engagement",
+    },
+    {
+      title: "RCA Law",
+      category: "Legal",
+      description:
+        "A professional and trustworthy website for a law firm, featuring practice area details, attorney profiles, and consultation booking.",
+      image: "/images/legal-firm.png",
+      link: "https://v0-law-firm-website-eosin.vercel.app/",
+      results: "Increased Leads",
+    },
+    {
+      title: "Planning Poker",
+      category: "Productivity Tool",
+      description:
+        "A real-time agile estimation tool for remote teams. Facilitates sprint planning with a simple, intuitive card interface.",
+      image: "/images/planning-poker.png",
+      link: "https://planning-poker-nu-two.vercel.app/",
+      results: "Better Estimates",
+    },
+    {
+      title: "AMDP Inc",
+      category: "Corporate",
+      description:
+        "A corporate website for AMDP Inc, showcasing their innovative solutions and services for modern businesses.",
+      image: "/images/amdp-inc.png",
+      link: "https://amdpinc.com/",
+      results: "Professional Presence",
     },
   ]
 
@@ -71,11 +108,15 @@ export default function PortfolioPage() {
               <div className="w-full lg:w-1/2 animate-in fade-in slide-in-from-bottom-8 duration-700 fill-mode-both" style={{ animationDelay: `${index * 100}ms` }}>
                 <div className="relative aspect-video overflow-hidden rounded-2xl border bg-muted shadow-2xl transition-all hover:shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] group">
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors z-10 pointer-events-none" />
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
-                  />
+                  <div className="relative w-full h-full">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                  </div>
                 </div>
               </div>
               <div className="w-full lg:w-1/2 space-y-6 animate-in fade-in slide-in-from-bottom-8 duration-700 fill-mode-both" style={{ animationDelay: `${index * 100 + 200}ms` }}>

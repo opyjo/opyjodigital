@@ -32,28 +32,28 @@ export default function RootLayout({
 
 export const metadata = {
   title: {
-    default: "Nexus Design | Custom Websites for Small Businesses",
-    template: "%s | Nexus Design",
+    default: "OpyjoDigital | Custom Websites for Small Businesses",
+    template: "%s | OpyjoDigital",
   },
   description:
     "Professional web design and development for small businesses. Get a high-converting, custom website that helps you grow.",
   keywords: ["web design", "web development", "small business website", "freelance web designer", "custom website"],
-  authors: [{ name: "Nexus Design" }],
-  creator: "Nexus Design",
+  authors: [{ name: "OpyjoDigital" }],
+  creator: "OpyjoDigital",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://nexus-design.com",
-    title: "Nexus Design | Custom Websites for Small Businesses",
+    url: "https://opyjodigital.com",
+    title: "OpyjoDigital | Custom Websites for Small Businesses",
     description:
       "Professional web design and development for small businesses. Get a high-converting, custom website that helps you grow.",
-    siteName: "Nexus Design",
+    siteName: "OpyjoDigital",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nexus Design | Custom Websites for Small Businesses",
+    title: "OpyjoDigital | Custom Websites for Small Businesses",
     description:
       "Professional web design and development for small businesses. Get a high-converting, custom website that helps you grow.",
-    creator: "@nexusdesign",
+    creator: "@opyjodigital",
   },
 }

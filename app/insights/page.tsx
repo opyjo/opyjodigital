@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowRight, Calendar, Clock, User } from "lucide-react"
 import { blogPosts } from "@/lib/blog-data"
 
@@ -33,11 +34,15 @@ export default function InsightsPage() {
             >
               <div className="aspect-video w-full overflow-hidden bg-muted relative">
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors z-10" />
-                <img
-                  src={post.image}
-                  alt={post.title}
-                  className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
-                />
+                <div className="relative w-full h-full">
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                </div>
               </div>
               <div className="flex flex-col flex-1 p-6 space-y-4">
                 <div className="flex items-center gap-4 text-xs text-muted-foreground">

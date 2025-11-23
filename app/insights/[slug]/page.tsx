@@ -3,11 +3,50 @@ import { notFound } from "next/navigation"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react"
+import { ReadingProgress } from "@/components/reading-progress"
+
+import { Metadata } from "next"
 
 export function generateStaticParams() {
     return blogPosts.map((post) => ({
         slug: post.slug,
     }))
+}
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+    const post = getPostBySlug(params.slug)
+
+    if (!post) {
+        return {
+            title: 'Post Not Found',
+        }
+    }
+
+    return {
+        title: post.title,
+        description: post.excerpt,
+        openGraph: {
+            title: post.title,
+            description: post.excerpt,
+            type: 'article',
+            publishedTime: post.date,
+            authors: [post.author],
+            images: [
+                {
+                    url: post.image,
+                    width: 1200,
+                    height: 630,
+                    alt: post.title,
+                },
+            ],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: post.title,
+            description: post.excerpt,
+            images: [post.image],
+        },
+    }
 }
 
 export default function BlogPostPage({ params }: { params: { slug: string } }) {
@@ -19,6 +58,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
     return (
         <article className="container py-12 md:py-20 px-4 md:px-6 max-w-4xl mx-auto">
+            <ReadingProgress />
             <div className="mb-10">
                 <Button asChild variant="ghost" size="sm" className="mb-6 -ml-4 text-muted-foreground hover:text-foreground">
                     <Link href="/insights">

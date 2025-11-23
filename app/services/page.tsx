@@ -5,7 +5,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Check, ArrowRight, Laptop, Rocket, Search, PenTool } from "lucide-react"
 
 export const metadata = {
-  title: "Services & Pricing | WebStudio",
+  title: "Services & Pricing | OpyjoDigital",
   description: "Transparent pricing and comprehensive web design packages for small businesses.",
 }
 

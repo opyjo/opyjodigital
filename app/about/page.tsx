@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { ArrowRight, Code, Heart, Zap, CheckCircle2 } from "lucide-react"
 
 export const metadata = {
-  title: "About | WebStudio",
+  title: "About | OpyjoDigital",
   description: "Learn more about my philosophy, process, and the person behind the pixels.",
 }
 

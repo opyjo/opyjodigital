@@ -24,17 +24,17 @@ export function PortfolioPreview() {
           <div className="group relative overflow-hidden rounded-xl border bg-background shadow-sm transition-all hover:shadow-xl animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100 fill-mode-both">
             <div className="aspect-video overflow-hidden">
               <img
-                src="/images/coffee-shop.jpg"
-                alt="Project 1"
+                src="/images/canada-citizenship.png"
+                alt="Canada Citizenship Guide"
                 className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
             </div>
             <div className="p-6">
-              <h3 className="text-xl font-bold group-hover:text-primary transition-colors">Main Street Coffee</h3>
-              <p className="text-sm text-primary font-medium mb-2">Web Design & Branding</p>
+              <h3 className="text-xl font-bold group-hover:text-primary transition-colors">Canada Citizenship Guide</h3>
+              <p className="text-sm text-primary font-medium mb-2">Education Platform</p>
               <p className="text-muted-foreground mb-4 line-clamp-2">
-                A complete rebrand and website overhaul that increased online orders by 40% in the first month.
+                A comprehensive study guide and practice test platform for the Canadian citizenship exam.
               </p>
               <Link
                 href="/portfolio"
@@ -49,17 +49,17 @@ export function PortfolioPreview() {
           <div className="group relative overflow-hidden rounded-xl border bg-background shadow-sm transition-all hover:shadow-xl animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200 fill-mode-both">
             <div className="aspect-video overflow-hidden">
               <img
-                src="/images/legal-firm.jpg"
-                alt="Project 2"
+                src="/images/driver-guide.png"
+                alt="Driver Guide Canada"
                 className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
             </div>
             <div className="p-6">
-              <h3 className="text-xl font-bold group-hover:text-primary transition-colors">Oak & Stone Legal</h3>
-              <p className="text-sm text-primary font-medium mb-2">Lead Generation Site</p>
+              <h3 className="text-xl font-bold group-hover:text-primary transition-colors">Driver Guide Canada</h3>
+              <p className="text-sm text-primary font-medium mb-2">Education Platform</p>
               <p className="text-muted-foreground mb-4 line-clamp-2">
-                Professional website design focused on trust and authority, generating 2x more consultation requests.
+                The ultimate resource for Canadian driving tests with practice exams and road rule guides.
               </p>
               <Link
                 href="/portfolio"
