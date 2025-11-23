@@ -319,12 +319,29 @@ export function ChatWidget() {
                 <Button
                     onClick={() => setIsOpen(true)}
                     size="icon"
-                    className="h-14 w-14 rounded-full shadow-2xl hover:scale-110 transition-all relative"
+                    className="h-14 w-14 rounded-full shadow-2xl hover:scale-110 transition-all relative group animate-bounce"
+                    style={{
+                        animation: "bounce 2s infinite, float3d 3s ease-in-out infinite",
+                    }}
                 >
+                    <style jsx>{`
+                        @keyframes float3d {
+                            0%, 100% {
+                                transform: translateY(0px) rotateY(0deg);
+                            }
+                            25% {
+                                transform: translateY(-10px) rotateY(10deg);
+                            }
+                            50% {
+                                transform: translateY(0px) rotateY(0deg);
+                            }
+                            75% {
+                                transform: translateY(-10px) rotateY(-10deg);
+                            }
+                        }
+                    `}</style>
                     <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-75" />
-                    <MessageCircle className="h-6 w-6" />
-                    {/* Unread indicator (optional, if we had one) */}
-                    {/* <span className="absolute top-0 right-0 h-4 w-4 bg-red-500 rounded-full border-2 border-white"></span> */}
+                    <MessageCircle className="h-6 w-6 relative z-10 group-hover:rotate-12 transition-transform" />
                 </Button>
             )}
         </div>

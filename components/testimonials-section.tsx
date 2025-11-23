@@ -1,3 +1,7 @@
+"use client"
+
+import { useRef } from "react"
+import { motion, useInView } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Star } from "lucide-react"
@@ -30,8 +34,11 @@ export function TestimonialsSection() {
     },
   ]
 
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: "-100px" })
+
   return (
-    <section className="py-20 md:py-24 bg-muted/30">
+    <section className="py-20 md:py-24 bg-muted/30" ref={ref}>
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-700 fill-mode-both">
           <h2 className="font-bold text-3xl md:text-4xl lg:text-5xl text-balance tracking-tight">What My Clients Say</h2>
@@ -42,31 +49,41 @@ export function TestimonialsSection() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
-            <Card
+            <motion.div
               key={index}
-              className="bg-card animate-in fade-in slide-in-from-bottom-8 fill-mode-both hover:shadow-lg transition-all hover:-translate-y-1 border-border/50"
-              style={{ animationDelay: `${index * 150}ms` }}
+              initial={{ opacity: 0, y: 50 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
             >
-              <CardContent className="p-8 space-y-6">
-                <div className="flex gap-1">
-                  {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <Star key={i} className="h-5 w-5 fill-accent text-accent" />
-                  ))}
-                </div>
-                <blockquote className="text-base leading-relaxed text-pretty text-muted-foreground">"{testimonial.quote}"</blockquote>
-                <div className="flex items-center gap-4 pt-2 border-t border-border/50 mt-4">
-                  <Avatar className="h-10 w-10 border border-border">
-                    <AvatarFallback className="bg-primary/10 text-primary font-bold">
-                      {testimonial.initials}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <div className="font-bold text-sm">{testimonial.author}</div>
-                    <div className="text-xs text-muted-foreground">{testimonial.role}</div>
+              <Card
+                className="bg-card h-full hover:shadow-lg transition-all hover:-translate-y-1 border-border/50"
+              >
+                <CardContent className="p-8 space-y-6">
+                  <motion.div
+                    className="flex gap-1"
+                    initial={{ scale: 0 }}
+                    animate={isInView ? { scale: 1 } : { scale: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.2 + 0.3 }}
+                  >
+                    {Array.from({ length: testimonial.rating }).map((_, i) => (
+                      <Star key={i} className="h-5 w-5 fill-accent text-accent" />
+                    ))}
+                  </motion.div>
+                  <blockquote className="text-base leading-relaxed text-pretty text-muted-foreground">"{testimonial.quote}"</blockquote>
+                  <div className="flex items-center gap-4 pt-2 border-t border-border/50 mt-4">
+                    <Avatar className="h-10 w-10 border border-border">
+                      <AvatarFallback className="bg-primary/10 text-primary font-bold">
+                        {testimonial.initials}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <div className="font-bold text-sm">{testimonial.author}</div>
+                      <div className="text-xs text-muted-foreground">{testimonial.role}</div>
+                    </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
         </div>
       </div>

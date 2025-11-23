@@ -1,6 +1,9 @@
+"use client"
+
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
+import { MagneticButton } from "@/components/ui/magnetic-button"
 import { ArrowRight, CheckCircle2 } from "lucide-react"
 
 export function HeroSection() {
@@ -40,24 +43,24 @@ export function HeroSection() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button
+              <MagneticButton
                 asChild
                 size="lg"
-                className="bg-accent text-accent-foreground hover:bg-accent/90 text-base transition-all hover:scale-105 shadow-lg hover:shadow-accent/25"
+                className="bg-accent text-accent-foreground hover:bg-accent/90 text-base shadow-lg hover:shadow-accent/25"
               >
                 <Link href="/contact">
                   Get Your Free Consultation
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
-              </Button>
-              <Button
+              </MagneticButton>
+              <MagneticButton
                 asChild
                 size="lg"
                 variant="outline"
-                className="text-base transition-all hover:scale-105 bg-background/50 backdrop-blur-sm border-accent/20 hover:bg-accent/10"
+                className="text-base bg-background/50 backdrop-blur-sm border-accent/20 hover:bg-accent/10"
               >
                 <Link href="/portfolio">View My Work</Link>
-              </Button>
+              </MagneticButton>
             </div>
           </div>
 
