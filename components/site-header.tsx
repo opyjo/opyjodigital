@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { MagneticButton } from "@/components/ui/magnetic-button"
@@ -12,6 +13,7 @@ import { cn } from "@/lib/utils"
 
 export function SiteHeader() {
   const [isOpen, setIsOpen] = useState(false)
+  const pathname = usePathname()
 
   // Prevent scrolling when menu is open
   useEffect(() => {
@@ -42,16 +44,30 @@ export function SiteHeader() {
             { name: "Estimator", href: "/estimator" },
             { name: "About", href: "/about" },
             { name: "Contact", href: "/contact" },
-          ].map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className="relative text-foreground/80 hover:text-foreground transition-colors group py-2"
-            >
-              {link.name}
-              <span className="absolute left-0 bottom-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left" />
-            </Link>
-          ))}
+          ].map((link) => {
+            const isActive = pathname === link.href
+
+            return (
+              <Link
+                key={link.name}
+                href={link.href}
+                className={cn(
+                  "relative transition-colors group py-2",
+                  isActive
+                    ? "text-primary font-semibold"
+                    : "text-foreground/80 hover:text-foreground"
+                )}
+              >
+                {link.name}
+                <span
+                  className={cn(
+                    "absolute left-0 bottom-0 w-full h-0.5 bg-primary transition-transform duration-300 ease-out origin-left",
+                    isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                  )}
+                />
+              </Link>
+            )
+          })}
           <div className="flex items-center gap-4 ml-2">
             <ModeToggle />
             <Button asChild className="shadow-md hover:shadow-lg transition-all hover:scale-105">
