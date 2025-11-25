@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { MessageCircle, X, Send, User, Bot, Calendar } from "lucide-react"
+import { MessageCircle, X, Send, User, Bot, Calendar, Trash2 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { COMPANY_DATA } from "@/lib/ai-data"
 import ReactMarkdown from "react-markdown"
@@ -72,6 +72,12 @@ export function ChatWidget() {
             }
         }
     }, [messages, isLoading, isOpen])
+
+    const clearChat = () => {
+        setMessages([])
+        localStorage.removeItem("chat_history")
+        localStorage.removeItem("has_greeted")
+    }
 
     const sendMessage = async (content: string) => {
         if (!content.trim()) return
@@ -167,6 +173,15 @@ export function ChatWidget() {
                             </div>
                         </div>
                         <div className="flex items-center gap-1">
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                onClick={clearChat}
+                                className="h-8 w-8 text-primary-foreground hover:bg-primary-foreground/20"
+                                title="Clear Chat"
+                            >
+                                <Trash2 className="h-4 w-4" />
+                            </Button>
                             <Button
                                 variant="ghost"
                                 size="icon"
@@ -284,7 +299,7 @@ export function ChatWidget() {
                                         <Bot className="h-4 w-4" />
                                     </div>
                                     <div className="bg-muted rounded-2xl rounded-tl-none px-4 py-3 flex items-center gap-2">
-                                        <span className="text-xs text-muted-foreground mr-1">Opyjo is typing</span>
+                                        <span className="text-xs text-muted-foreground mr-1">Typing...</span>
                                         <div className="flex gap-1">
                                             <div className="w-1.5 h-1.5 bg-muted-foreground/60 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
                                             <div className="w-1.5 h-1.5 bg-muted-foreground/60 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
