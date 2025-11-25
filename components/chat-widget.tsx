@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { MessageCircle, X, Send, User, Bot, Calendar, Trash2 } from "lucide-react"
+import { MessageCircle, X, Send, User, Bot, Trash2 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { COMPANY_DATA } from "@/lib/ai-data"
 import ReactMarkdown from "react-markdown"
@@ -182,15 +182,7 @@ export function ChatWidget() {
                             >
                                 <Trash2 className="h-4 w-4" />
                             </Button>
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                onClick={() => window.open("https://calendly.com", "_blank")}
-                                className="h-8 w-8 text-primary-foreground hover:bg-primary-foreground/20"
-                                title="Book a Call"
-                            >
-                                <Calendar className="h-4 w-4" />
-                            </Button>
+
                             <Button
                                 variant="ghost"
                                 size="icon"
@@ -207,11 +199,9 @@ export function ChatWidget() {
                         <div className="space-y-6 pb-8">
                             {messages.length === 0 && !error && (
                                 <div className="text-center text-muted-foreground text-sm py-8">
-                                    <div className="h-16 w-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
-                                        <Bot className="h-8 w-8 opacity-50" />
-                                    </div>
-                                    <p className="font-medium mb-1 text-foreground">Welcome to OpyjoDigital!</p>
-                                    <p className="text-xs mb-6 max-w-[200px] mx-auto">I'm here to help you build your dream website. Ask me anything!</p>
+
+
+                                    <p className="text-xs mb-4 text-foreground/80">👋 How can I help you today?</p>
 
                                     <div className="flex flex-col gap-2 px-4">
                                         {COMPANY_DATA.examples.map((example, i) => (
